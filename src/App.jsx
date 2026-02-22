@@ -69,6 +69,12 @@ function App() {
 
   const handleSync = async () => {
     if (!currentUser) return;
+
+    if (API_URL.includes('fly.dev')) {
+      setError("Sincronizzazione Cloud disabilitata a causa del blocco anti-bot di ClasseViva. Per aggiornare i dati, avvia l'app 'Sincronizza ClasseViva' dal tuo PC.");
+      return;
+    }
+
     setLoading(true);
     setError(null);
     setSuccess(null);
