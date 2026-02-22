@@ -7,7 +7,7 @@ import shutil
 from datetime import datetime
 from fastapi.staticfiles import StaticFiles
 import sys
-
+from typing import List, Dict, Any
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from backend.scraper import ClasseVivaScraper
 
@@ -69,6 +69,11 @@ class NewUserRequest(BaseModel):
     pin: str
     cv_username: str
     cv_password: str
+
+class AdminSyncPayload(BaseModel):
+    user_id: str
+    homework: List[Dict[str, Any]]
+    grades: List[Dict[str, Any]]
 
 # --- User Management ---
 @app.get("/api/users")
@@ -300,6 +305,20 @@ async def sync_classeviva(user_id: str):
     except Exception as e:
         print(f"[ERROR] Sync failed for {user_id}: {e}")
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/admin/users")
+async def admin_get_users(token: str):
+    if token != "fly_local_sync_2026":
+        raise HTTPException(status_code=401)
+    return load_json("users.json")
+
+@app.post("/api/admin/push_data")
+async def admin_push_data(payload: AdminSyncPayload, token: str):
+    if token != "fly_local_sync_2026":
+        raise HTTPException(status_code=401)
+    save_json("homework.json", payload.homework, payload.user_id)
+    save_json("grades.json", payload.grades, payload.user_id)
+    return {"status": "ok"}
 
 if __name__ == "__main__":
     import uvicorn
