@@ -71,7 +71,10 @@ function App() {
     if (!currentUser) return;
 
     if (API_URL.includes('fly.dev')) {
-      setError("Sincronizzazione Cloud disabilitata a causa del blocco anti-bot di ClasseViva. Per aggiornare i dati, avvia l'app 'Sincronizza ClasseViva' dal tuo PC.");
+      setError("Attenzione: usa l'App 'Sincronizza_ClasseViva' dal PC per aggiornare i voti da Spaggiari. Sto comunque ricaricando l'ultima versione salvata sul Cloud...");
+      setLoading(true);
+      await fetchData();
+      setLoading(false);
       return;
     }
 
