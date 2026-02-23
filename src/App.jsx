@@ -70,14 +70,6 @@ function App() {
   const handleSync = async () => {
     if (!currentUser) return;
 
-    if (API_URL.includes('fly.dev')) {
-      setError("Attenzione: usa l'App 'Sincronizza_ClasseViva' dal PC per aggiornare i voti da Spaggiari. Sto comunque ricaricando l'ultima versione salvata sul Cloud...");
-      setLoading(true);
-      await fetchData();
-      setLoading(false);
-      return;
-    }
-
     setLoading(true);
     setError(null);
     setSuccess(null);
@@ -499,7 +491,7 @@ function App() {
       <main className="main-content" style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 0 }}>
 
         {/* Sticky top section */}
-        <div style={{ padding: '40px 40px 0 40px', flexShrink: 0 }}>
+        <div className="content-header" style={{ padding: '40px 40px 0 40px', flexShrink: 0 }}>
           <header className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
             <div>
               <h1>{activeTab === 'agenda' ? 'Agenda Compiti' : 'Analisi Valutazioni'}</h1>
@@ -598,7 +590,7 @@ function App() {
         </div>
 
         {/* Scrollable content area */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '0 40px 40px 40px' }}>
+        <div className="content-body" style={{ flex: 1, overflowY: 'auto', padding: '0 40px 40px 40px' }}>
           {loading && !homework.length ? (
             <div className="loading" style={{ textAlign: 'center', padding: '100px', color: 'var(--text-muted)' }}>
               <RefreshCw size={40} className="animate-spin" style={{ marginBottom: '20px' }} />

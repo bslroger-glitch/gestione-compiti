@@ -270,3 +270,90 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* --- Responsive Layout for Mobile --- */
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .app-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+  }
+
+  .logo-section {
+    margin-bottom: 20px !important;
+  }
+
+  .nav-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .nav-item {
+    flex: 1;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .stats-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: 0 !important;
+    overflow-y: visible;
+  }
+
+  .content-header {
+    padding: 20px 20px 0 20px !important;
+  }
+
+  .content-body {
+    padding: 15px !important;
+    overflow-y: visible !important;
+  }
+
+  .header {
+    margin-bottom: 16px !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .header h1 {
+    font-size: 1.5rem;
+  }
+
+  .agenda-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .auth-card {
+    padding: 24px !important;
+    max-width: calc(100% - 32px) !important;
+    margin: 16px;
+  }
+
+  .home-container h1 {
+    font-size: 2.2rem !important;
+  }
+  
+  .home-container p {
+    font-size: 1rem !important;
+  }
+}
