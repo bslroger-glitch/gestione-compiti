@@ -82,7 +82,7 @@ const Home = ({ onLogin }) => {
     }
 
     return (
-        <div style={{
+        <div className="home-container" style={{
             minHeight: '100vh',
             width: '100vw',
             background: 'var(--bg-dark)',
@@ -193,7 +193,7 @@ const Home = ({ onLogin }) => {
 
             {/* Login Form */}
             {selectedUser && (
-                <div style={{
+                <div className="auth-card" style={{
                     background: 'var(--bg-card)',
                     padding: '40px',
                     borderRadius: '20px',
@@ -297,7 +297,7 @@ const Home = ({ onLogin }) => {
 
             {/* Create User Form */}
             {showNewUser && (
-                <div style={{
+                <div className="auth-card" style={{
                     background: 'var(--bg-card)',
                     padding: '40px',
                     borderRadius: '20px',
